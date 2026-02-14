@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine</title>
+
+<style>
+body {
+    text-align: center;
+    font-family: Arial;
+    background: pink;
+    overflow: hidden;
+}
+
+.container {
+    margin-top: 80px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+}
+
+#yesBtn {
+    background-color: #ff4d6d;
+    color: white;
+    transition: 0.3s;
+}
+
+#noBtn {
+    background-color: white;
+}
+
+img {
+    border-radius: 15px;
+}
+
+.heart {
+    position: absolute;
+    color: red;
+    font-size: 24px;
+    animation: float 3s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-600px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <img id="mainImage" 
+    src="https://ibb.co/zhpXv3VP" 
+    width="250"><br><br>
+
+    <h2 id="question">Will you be my valentine?</h2>
+
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+</div>
+
+<script>
+let yesSize = 18;
+
+document.getElementById("noBtn").addEventListener("click", function() {
+    yesSize += 10;
+    document.getElementById("yesBtn").style.fontSize = yesSize + "px";
+});
+
+document.getElementById("yesBtn").addEventListener("click", function() {
+
+    // تغيير الصورة
+    document.getElementById("mainImage").src =
+    "https://ibb.co/FL1ksRVp";
+
+    // تغيير السؤال
+    document.getElementById("question").innerText =
+    "Yayyyy 💖 I love you!!!";
+
+    // إخفاء زر No
+    document.getElementById("noBtn").style.display = "none";
+
+    // قلوب متطايرة
+    for(let i = 0; i < 40; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "❤️";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = window.innerHeight + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 3000);
+    }
+});
+</script>
+
+</body>
+</html>
