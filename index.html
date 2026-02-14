@@ -5,20 +5,26 @@
 <title>Be My Valentine</title>
 
 <style>
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     display: flex;
     justify-content: center; /* توسيط أفقي */
     align-items: center;     /* توسيط عمودي */
-    height: 100vh;           /* كامل ارتفاع الشاشة */
     text-align: center;
     font-family: Arial, sans-serif;
     background: pink;
     overflow: hidden;
-    margin: 0;
 }
 
 .container {
-    /* تم إزالة margin-top */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 button {
@@ -28,7 +34,7 @@ button {
     cursor: pointer;
     border: none;
     border-radius: 8px;
-    max-width: 90%; /* مناسب للشاشات الصغيرة */
+    max-width: 90%;
 }
 
 #yesBtn {
@@ -75,11 +81,14 @@ img {
 </div>
 
 <script>
-let yesSize = 18;
+let yesSize = 18;        // حجم أولي للزر
+let maxSize = 250;       // الحجم النهائي تقريبًا عند 7–8 ضغطات
 
 document.getElementById("noBtn").addEventListener("click", function() {
-    yesSize *= 2; // يكبر بسرعة كل ضغطة
-    document.getElementById("yesBtn").style.fontSize = yesSize + "px";
+    if(yesSize < maxSize) {
+        yesSize += 30; // كل ضغطة تزيد حجم الزر تدريجيًا
+        document.getElementById("yesBtn").style.fontSize = yesSize + "px";
+    }
 });
 
 document.getElementById("yesBtn").addEventListener("click", function() {
