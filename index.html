@@ -14,7 +14,7 @@ html, body {
 body {
     display: flex;
     justify-content: center;
-    align-items: center; /* الآن المحتوى في الوسط */
+    align-items: center; /* المحتوى في الوسط */
     text-align: center;
     font-family: Arial, sans-serif;
     background: pink;
@@ -50,6 +50,7 @@ h2 {
     display: flex;
     gap: 10px;
     margin-top: 10px;
+    position: relative;
 }
 
 button {
@@ -59,18 +60,20 @@ button {
     border: none;
     border-radius: 8px;
     max-width: 90%;
-    transition: all 0.15s ease; /* تكبير سريع وسلس */
+    transition: all 0.15s ease;
 }
 
 #yesBtn {
     background-color: #ff4d6d;
     color: white;
     z-index: 2;
+    position: relative;
 }
 
 #noBtn {
     background-color: white;
     z-index: 1;
+    position: relative;
 }
 
 .heart {
@@ -106,14 +109,14 @@ button {
 let yesFontSize = 18;      // حجم الخط الابتدائي
 let yesPadding = 10;       // padding الابتدائي
 let clickCount = 0;        
-let growthStep = 12;       // زر Yes يكبر أسرع الآن
+let growthStep = 15;       // تكبر بسرعة لتغطية No من الضغطة الرابعة
 
 document.getElementById("noBtn").addEventListener("click", function() {
     clickCount++;
 
     const yesBtn = document.getElementById("yesBtn");
 
-    // زيادة حجم الخط و padding تدريجيًا → يحافظ على شكل الزر الطبيعي
+    // تكبير الخط و padding تدريجيًا
     yesFontSize += growthStep;
     yesPadding += 4;
     yesBtn.style.fontSize = yesFontSize + "px";
@@ -121,7 +124,7 @@ document.getElementById("noBtn").addEventListener("click", function() {
 
     // بعد الضغطة الرابعة → لا يمكن الضغط على No
     if(clickCount >= 4){
-        document.getElementById("noBtn").style.pointerEvents = "none";
+        document.getElementById("noBtn").style.pointerEvents = "none"; // زر No غير قابل للضغط
     }
 });
 
