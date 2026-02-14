@@ -14,18 +14,19 @@ html, body {
 body {
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* تحشيره تحت الشاشة */
+    align-items: flex-start; /* فوق شوي، مو تحت ولا وسط */
     text-align: center;
     font-family: Arial, sans-serif;
     background: pink;
     overflow: hidden;
-    padding-bottom: 50px; /* يعطي مساحة فوق شريط السفاري */
+    padding-top: 50px; /* المسافة عن أعلى الشاشة */
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .love-text {
@@ -43,7 +44,7 @@ img {
 }
 
 h2 {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-bottom: 10px;
 }
 
@@ -52,6 +53,7 @@ h2 {
     gap: 10px;
     margin-top: 10px;
     position: relative;
+    height: 60px; /* يعطي مساحة للزر العائم */
 }
 
 button {
@@ -61,18 +63,20 @@ button {
     border: none;
     border-radius: 8px;
     max-width: 90%;
-    transition: font-size 0.1s;
+    transition: all 0.3s ease;
 }
 
 #yesBtn {
     background-color: #ff4d6d;
     color: white;
     z-index: 2;
+    position: relative;
 }
 
 #noBtn {
     background-color: white;
     z-index: 1;
+    position: relative;
 }
 
 .heart {
@@ -107,26 +111,32 @@ button {
 <script>
 let yesSize = 18;       // الحجم الابتدائي للزر
 let clickCount = 0;     
-let growthStep = 35;    // الآن يكبر أسرع لكل ضغطة
+let growthStep = 18;    // نمو تدريجي
 
 document.getElementById("noBtn").addEventListener("click", function() {
     clickCount++;
 
     // كل ضغطة تكبر زر "Yes"
     yesSize += growthStep;
-    document.getElementById("yesBtn").style.fontSize = yesSize + "px";
+    const yesBtn = document.getElementById("yesBtn");
+    yesBtn.style.fontSize = yesSize + "px";
+
+    // تأثير العوم/الابتعاد عن زر "No" بعد أول ضغطة
+    if(clickCount > 1 && clickCount <= 7){
+        yesBtn.style.transform = `translateX(${clickCount * 15}px) rotate(${clickCount*10}deg)`; 
+    }
 
     // بعد الضغط السابع، زر "Yes" يغطي "No"
     if(clickCount >= 7){
-        document.getElementById("yesBtn").style.position = "absolute";
-        document.getElementById("yesBtn").style.left = "0";
-        document.getElementById("yesBtn").style.right = "0";
-        document.getElementById("yesBtn").style.margin = "0 auto";
+        yesBtn.style.position = "absolute";
+        yesBtn.style.left = "50%";
+        yesBtn.style.top = "0";
+        yesBtn.style.transform = "translateX(-50%) scale(1.5)";
+        document.getElementById("noBtn").style.pointerEvents = "none"; // لا يمكن الضغط على No
     }
 });
 
 document.getElementById("yesBtn").addEventListener("click", function() {
-
     // تغيير الصورة
     document.getElementById("mainImage").src =
     "https://i.ibb.co/gL8bvkVY/IMG-5930.gif";
