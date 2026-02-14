@@ -6,14 +6,19 @@
 
 <style>
 body {
+    display: flex;
+    justify-content: center; /* توسيط أفقي */
+    align-items: center;     /* توسيط عمودي */
+    height: 100vh;           /* كامل ارتفاع الشاشة */
     text-align: center;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     background: pink;
     overflow: hidden;
+    margin: 0;
 }
 
 .container {
-    margin-top: 80px;
+    /* تم إزالة margin-top */
 }
 
 button {
@@ -23,6 +28,7 @@ button {
     cursor: pointer;
     border: none;
     border-radius: 8px;
+    max-width: 90%; /* مناسب للشاشات الصغيرة */
 }
 
 #yesBtn {
@@ -37,6 +43,8 @@ button {
 
 img {
     border-radius: 15px;
+    max-width: 90%;
+    height: auto;
 }
 
 .heart {
@@ -70,7 +78,7 @@ img {
 let yesSize = 18;
 
 document.getElementById("noBtn").addEventListener("click", function() {
-    yesSize += 10;
+    yesSize *= 2; // يكبر بسرعة كل ضغطة
     document.getElementById("yesBtn").style.fontSize = yesSize + "px";
 });
 
