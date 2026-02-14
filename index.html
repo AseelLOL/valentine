@@ -60,7 +60,7 @@ button {
     border: none;
     border-radius: 8px;
     max-width: 90%;
-    transition: all 0.15s ease; /* تكبير سريع وسلس */
+    transition: all 0.15s ease;
 }
 
 #yesBtn {
@@ -108,26 +108,30 @@ button {
 <script>
 let yesFontSize = 18;      // حجم الخط الابتدائي
 let yesPadding = 10;       // padding الابتدائي
-let yesWidth = 100;        // عرض الزر الابتدائي (px)
+let yesWidth = 100;        // عرض الزر الابتدائي
 let clickCount = 0;        
-let growthStep = 10;       // تكبر سريعًا ليغطي No بعد الضغطة الرابعة
+let normalGrowth = 10;     // حجم النمو للضغطات الأولى
+let fastGrowth = 25;       // حجم النمو من الضغطة الرابعة فصاعدًا
 
 document.getElementById("noBtn").addEventListener("click", function() {
     clickCount++;
 
     const yesBtn = document.getElementById("yesBtn");
 
+    // نحدد مقدار التكبير حسب عدد الضغطات
+    let growth = (clickCount >= 4) ? fastGrowth : normalGrowth;
+
     // تكبير حجم الخط، padding، والعرض تدريجيًا
-    yesFontSize += growthStep;
-    yesPadding += 5;
-    yesWidth += 20;
+    yesFontSize += growth;
+    yesPadding += 4;
+    yesWidth += growth * 2; // زيادة العرض بسرعة أكبر
     yesBtn.style.fontSize = yesFontSize + "px";
     yesBtn.style.padding = yesPadding + "px " + (yesPadding*2) + "px";
     yesBtn.style.width = yesWidth + "px";
 
-    // بعد الضغطة الرابعة → زر Yes كبير جدًا ويغطي No عمليًا
+    // زر No يظل قابل للضغط دائمًا، لكن زر Yes يغطيه ابتداءً من الضغطة الرابعة
     if(clickCount >= 4){
-        document.getElementById("noBtn").style.pointerEvents = "none"; // لا يمكن الضغط على No
+        yesBtn.style.zIndex = 3; // فوق No
     }
 });
 
