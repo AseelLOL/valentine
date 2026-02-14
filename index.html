@@ -13,8 +13,8 @@ html, body {
 
 body {
     display: flex;
-    justify-content: center; /* توسيط أفقي */
-    align-items: center;     /* توسيط عمودي */
+    justify-content: center;
+    align-items: center;
     text-align: center;
     font-family: Arial, sans-serif;
     background: pink;
@@ -23,13 +23,32 @@ body {
 
 .container {
     display: flex;
-    flex-direction: column; /* الصورة + السؤال عمود */
+    flex-direction: column;
     align-items: center;
 }
 
+.love-text {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ff1a75;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px #fff;
+}
+
+img {
+    border-radius: 15px;
+    max-width: 90%;
+    height: auto;
+}
+
+h2 {
+    margin-top: 20px; /* يعطي مساحة للسؤال */
+    margin-bottom: 10px;
+}
+
 .button-container {
-    display: flex;          /* الأزرار جنب بعض */
-    gap: 10px;              /* مسافة بين الزرين */
+    display: flex;
+    gap: 10px;
     margin-top: 10px;
 }
 
@@ -40,22 +59,16 @@ button {
     border: none;
     border-radius: 8px;
     max-width: 90%;
+    transition: font-size 0.2s;
 }
 
 #yesBtn {
     background-color: #ff4d6d;
     color: white;
-    transition: 0.3s;
 }
 
 #noBtn {
     background-color: white;
-}
-
-img {
-    border-radius: 15px;
-    max-width: 90%;
-    height: auto;
 }
 
 .heart {
@@ -75,9 +88,9 @@ img {
 <body>
 
 <div class="container">
-    <img id="mainImage" 
-    src="https://i.ibb.co/svnKYT9s/IMG-5926.gif" 
-    width="250"><br>
+    <div class="love-text">For my love Noura 💖</div>
+
+    <img id="mainImage" src="https://i.ibb.co/svnKYT9s/IMG-5926.gif" width="250">
 
     <h2 id="question">Will you be my valentine?</h2>
 
@@ -89,11 +102,11 @@ img {
 
 <script>
 let yesSize = 18;        // حجم أولي للزر
-let maxSize = 250;       // الحجم النهائي تقريبًا عند 7–8 ضغطات
+let maxSize = 300;       // الحجم النهائي تقريبًا عند 5 ضغطات
 
 document.getElementById("noBtn").addEventListener("click", function() {
     if(yesSize < maxSize) {
-        yesSize += 30; // كل ضغطة تزيد حجم الزر تدريجيًا
+        yesSize += 60; // كل ضغطة تزيد حجم الزر بسرعة كبيرة
         document.getElementById("yesBtn").style.fontSize = yesSize + "px";
     }
 });
