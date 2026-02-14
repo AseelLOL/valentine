@@ -23,14 +23,19 @@ body {
 
 .container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* الصورة + السؤال عمود */
     align-items: center;
+}
+
+.button-container {
+    display: flex;          /* الأزرار جنب بعض */
+    gap: 10px;              /* مسافة بين الزرين */
+    margin-top: 10px;
 }
 
 button {
     padding: 10px 20px;
     font-size: 18px;
-    margin: 10px;
     cursor: pointer;
     border: none;
     border-radius: 8px;
@@ -72,12 +77,14 @@ img {
 <div class="container">
     <img id="mainImage" 
     src="https://i.ibb.co/svnKYT9s/IMG-5926.gif" 
-    width="250"><br><br>
+    width="250"><br>
 
     <h2 id="question">Will you be my valentine?</h2>
 
-    <button id="yesBtn">Yes</button>
-    <button id="noBtn">No</button>
+    <div class="button-container">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
 </div>
 
 <script>
