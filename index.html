@@ -14,12 +14,11 @@ html, body {
 body {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* فوق شوي */
+    align-items: center; /* الآن المحتوى في الوسط */
     text-align: center;
     font-family: Arial, sans-serif;
     background: pink;
     overflow: hidden;
-    padding-top: 50px;
 }
 
 .container {
@@ -60,7 +59,7 @@ button {
     border: none;
     border-radius: 8px;
     max-width: 90%;
-    transition: all 0.2s ease; /* تكبير سلس */
+    transition: all 0.15s ease; /* تكبير سريع وسلس */
 }
 
 #yesBtn {
@@ -107,8 +106,7 @@ button {
 let yesFontSize = 18;      // حجم الخط الابتدائي
 let yesPadding = 10;       // padding الابتدائي
 let clickCount = 0;        
-let growthStep = 5;        // زيادة الخط لكل ضغطة
-let paddingStep = 3;       // زيادة padding لكل ضغطة
+let growthStep = 12;       // زر Yes يكبر أسرع الآن
 
 document.getElementById("noBtn").addEventListener("click", function() {
     clickCount++;
@@ -117,12 +115,12 @@ document.getElementById("noBtn").addEventListener("click", function() {
 
     // زيادة حجم الخط و padding تدريجيًا → يحافظ على شكل الزر الطبيعي
     yesFontSize += growthStep;
-    yesPadding += paddingStep;
+    yesPadding += 4;
     yesBtn.style.fontSize = yesFontSize + "px";
     yesBtn.style.padding = yesPadding + "px " + (yesPadding*2) + "px";
 
-    // بعد الضغط السابع → يغطي زر "No" ويصبح لا يمكن الضغط عليه
-    if(clickCount >= 7){
+    // بعد الضغطة الرابعة → لا يمكن الضغط على No
+    if(clickCount >= 4){
         document.getElementById("noBtn").style.pointerEvents = "none";
     }
 });
