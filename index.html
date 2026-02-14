@@ -42,7 +42,7 @@ img {
 }
 
 h2 {
-    margin-top: 20px; /* يعطي مساحة للسؤال */
+    margin-top: 40px;
     margin-bottom: 10px;
 }
 
@@ -50,6 +50,7 @@ h2 {
     display: flex;
     gap: 10px;
     margin-top: 10px;
+    position: relative;
 }
 
 button {
@@ -65,10 +66,12 @@ button {
 #yesBtn {
     background-color: #ff4d6d;
     color: white;
+    z-index: 2;
 }
 
 #noBtn {
     background-color: white;
+    z-index: 1;
 }
 
 .heart {
@@ -101,13 +104,24 @@ button {
 </div>
 
 <script>
-let yesSize = 18;        // حجم أولي للزر
-let maxSize = 300;       // الحجم النهائي تقريبًا عند 5 ضغطات
+let yesSize = 18;       // الحجم الابتدائي للزر
+let clickCount = 0;     // عدد الضغطات على "No"
+let growthStep = 25;    // مقدار زيادة حجم الزر لكل ضغطة
 
 document.getElementById("noBtn").addEventListener("click", function() {
-    if(yesSize < maxSize) {
-        yesSize += 60; // كل ضغطة تزيد حجم الزر بسرعة كبيرة
-        document.getElementById("yesBtn").style.fontSize = yesSize + "px";
+    clickCount++;
+
+    // كل ضغطة تكبر زر "Yes"
+    yesSize += growthStep;
+    document.getElementById("yesBtn").style.fontSize = yesSize + "px";
+
+    // بعد الضغط السابع، زر "Yes" يغطي "No"
+    if(clickCount >= 7){
+        // اجعل زر "Yes" فوق الزر "No"
+        document.getElementById("yesBtn").style.position = "absolute";
+        document.getElementById("yesBtn").style.left = "0";
+        document.getElementById("yesBtn").style.right = "0";
+        document.getElementById("yesBtn").style.margin = "0 auto";
     }
 });
 
