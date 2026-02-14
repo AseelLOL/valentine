@@ -14,11 +14,12 @@ html, body {
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end; /* تحشيره تحت الشاشة */
     text-align: center;
     font-family: Arial, sans-serif;
     background: pink;
     overflow: hidden;
+    padding-bottom: 50px; /* يعطي مساحة فوق شريط السفاري */
 }
 
 .container {
@@ -31,7 +32,7 @@ body {
     font-size: 36px;
     font-weight: bold;
     color: #ff1a75;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-shadow: 2px 2px 4px #fff;
 }
 
@@ -42,7 +43,7 @@ img {
 }
 
 h2 {
-    margin-top: 40px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
@@ -60,7 +61,7 @@ button {
     border: none;
     border-radius: 8px;
     max-width: 90%;
-    transition: font-size 0.2s;
+    transition: font-size 0.1s;
 }
 
 #yesBtn {
@@ -93,7 +94,7 @@ button {
 <div class="container">
     <div class="love-text">For my love Noura 💖</div>
 
-    <img id="mainImage" src="https://i.ibb.co/svnKYT9s/IMG-5926.gif" width="250">
+    <img id="mainImage" src="https://i.ibb.co/svnKYT9s/IMG-5926.gif" width="200">
 
     <h2 id="question">Will you be my valentine?</h2>
 
@@ -105,8 +106,8 @@ button {
 
 <script>
 let yesSize = 18;       // الحجم الابتدائي للزر
-let clickCount = 0;     // عدد الضغطات على "No"
-let growthStep = 25;    // مقدار زيادة حجم الزر لكل ضغطة
+let clickCount = 0;     
+let growthStep = 35;    // الآن يكبر أسرع لكل ضغطة
 
 document.getElementById("noBtn").addEventListener("click", function() {
     clickCount++;
@@ -117,7 +118,6 @@ document.getElementById("noBtn").addEventListener("click", function() {
 
     // بعد الضغط السابع، زر "Yes" يغطي "No"
     if(clickCount >= 7){
-        // اجعل زر "Yes" فوق الزر "No"
         document.getElementById("yesBtn").style.position = "absolute";
         document.getElementById("yesBtn").style.left = "0";
         document.getElementById("yesBtn").style.right = "0";
